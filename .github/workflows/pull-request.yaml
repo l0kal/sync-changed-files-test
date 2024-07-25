@@ -22,7 +22,7 @@ jobs:
         env:
             ALL_CHANGED_FILES: ${{ steps.changed-schema-files.outputs.all_changed_files }}
             MODIFIED_FILES: ${{ steps.changed-schema-files.outputs.modified_files }}
-            NEW_FILES: ${{ steps.changed-schema-files.outputs.new_files }}
+            NEW_FILES: ${{ steps.changed-schema-files.outputs.added_files }}
         run: |
             for file in ${ALL_CHANGED_FILES}; do
               echo "$file was changed"

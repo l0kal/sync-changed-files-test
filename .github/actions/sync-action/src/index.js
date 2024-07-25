@@ -35,15 +35,17 @@ function printSyncResult(report) {
 }
 
 async function action() {
-    const serviceAccountKey = core.getInput('service-account-key', { required: true });
+
     const dryRun = core.getBooleanInput('dry-run') === true;
 
-    const inputFiles = core.getInput('schema-files').split(';');
+    const inputFiles = core.getInput('schema-files');
+    core.info('inputFiles:', inputFiles);
     // const secrets = await loadSecrets(serviceAccountKey);
     // const cccApi = createApi({ name: 'customer-config', auth: secrets, url: 'https://ccc-api.retailsvc.com' });
 
-    const payload = schemaFiles.map(async (file) => ({ kind: file.split('.json')[0], filename: file, schemaValue: JSON.parse(await fs.readFile(file, 'utf8')) }));
-    core.info('requestPayload:', payload);
+    // const payload = schemaFiles.map(async (file) => ({ kind: file.split('.json')[0], filename: file, schemaValue: JSON.parse(await fs.readFile(file, 'utf8')) }));
+    // core.info('requestPayload:', payload);
+
 
     const failed = false;
     // for (const schemaFile of schemaFiles) {

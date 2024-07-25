@@ -35,4 +35,10 @@ jobs:
         run: |
           echo "Modified files in one line: "
           echo ${{ steps.changed-schema-files.outputs.modified_files }} | tr -s " " ";"
+
+      - name: Validate and sync schema
+        uses: ./.github/actions/sync-action
+        with:
+          schema-files: ${{ steps.changed-schema-files.outputs.modified_files }}
+          dry-run: "false"
           

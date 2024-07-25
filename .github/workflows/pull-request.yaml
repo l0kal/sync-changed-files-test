@@ -16,7 +16,7 @@ jobs:
         with:
             # Avoid using single or double quotes for multiline patterns
             files: |
-                customer-config/**.json
+                customer-config/**/**.json
 
       - name: List all changed files markdown files
         if: steps.changed-schema-files.outputs.any_changed == 'true'

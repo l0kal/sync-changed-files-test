@@ -36,6 +36,9 @@ jobs:
           echo "Modified files in one line: "
           echo ${{ steps.changed-schema-files.outputs.modified_files }} | tr -s " " ";"
 
+      - name: Prepare action
+        run: npm ci --prefix .github/actions/sync-action
+
       - name: Validate and sync schema
         uses: ./.github/actions/sync-action
         with:

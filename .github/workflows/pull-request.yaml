@@ -1,0 +1,32 @@
+name: Deploy
+on:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      
+      - name: Get all changed markdown files
+        id: changed-schema-files
+        uses: tj-actions/changed-files@v44
+        with:
+            # Avoid using single or double quotes for multiline patterns
+            files: |
+                customer-config/**.json
+
+      - name: List all changed files markdown files
+        if: steps.changed-schema-files.outputs.any_changed == 'true'
+        env:
+            ALL_CHANGED_FILES: ${{ steps.changed-schema-files.outputs.all_changed_files }}
+            MODIFIED_FILES: ${{ steps.changed-schema-files.outputs.modified_files }}
+            NEW_FILES: ${{ steps.changed-schema-files.outputs.new_files }}
+        run: |
+            for file in ${ALL_CHANGED_FILES}; do
+              echo "$file was changed"
+            done
+            echo "Modified files: $MODIFIED_FILES"
+            echo "New files: $NEW_FILES"

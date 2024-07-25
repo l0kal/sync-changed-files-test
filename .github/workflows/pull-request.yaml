@@ -29,3 +29,10 @@ jobs:
             done
             echo "Modified files: $MODIFIED_FILES"
             echo "New files: $NEW_FILES"
+            echo ${MODIFIED_FILES} | paste -s -d':'
+        
+      - name: Use values
+        run: |
+          echo "Modified files in one line: "
+          echo ${MODIFIED_FILES} | paste -s -d':'
+          

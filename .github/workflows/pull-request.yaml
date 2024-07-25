@@ -34,5 +34,5 @@ jobs:
       - name: Use values
         run: |
           echo "Modified files in one line: "
-          echo ${{ steps.changed-schema-files.outputs.modified_files }} | paste -s -d':'
+          echo ${{ steps.changed-schema-files.outputs.modified_files }} | tr -s " " ";"
           

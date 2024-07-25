@@ -14,7 +14,6 @@ jobs:
         id: changed-schema-files
         uses: tj-actions/changed-files@v44
         with:
-            # Avoid using single or double quotes for multiline patterns
             files: |
                 customer-config/**/**.json
 

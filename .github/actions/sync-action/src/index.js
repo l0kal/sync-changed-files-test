@@ -1,5 +1,5 @@
 const core = require('@actions/core');
-const fs = require('fs/promises');
+const fs = require('fs');
 // const { createApi } = require('../../external-events/src/utils/create-api');
 
 // async function loadSecrets(serviceAccountKey) {
@@ -48,10 +48,10 @@ async function action() {
   core.warning('This is a warning message');
   core.error('This is an error message');
 
-  const payload = await inputFiles.map(async (file) => ({
+  const payload = inputFiles.map((file) => ({
     kind: file.split('.json')[0],
     filename: file,
-    schemaValue: JSON.parse(await fs.readFile(file, 'utf8')),
+    schemaValue: JSON.parse(await fs.readFileSync(file, 'utf8')),
   }));
   // core.info('requestPayload:', payload);
   console.log('requestPayload:', payload);

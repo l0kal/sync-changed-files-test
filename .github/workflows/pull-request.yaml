@@ -32,14 +32,13 @@ jobs:
       #       echo ${MODIFIED_FILES} | paste -s -d':'
         
       - name: Set modified files in one line
+        shell: bash
         run: |
           echo "Modified files in one line: "
-          echo "BONGO:" ${{ steps.changed-schema-files.outputs.modified_files }} | tr -s " " ";"
-          echo "BONGOENV$(" ${{ steps.changed-schema-files.outputs.modified_files }} | tr -s " " ";" ") >> $GITHUB_ENV"
-          echo "MODIFIED_FILES=$(${{ steps.changed-schema-files.outputs.modified_files }} | tr -s " " ";")" >> $GITHUB_ENV 
+          BONGO=${{ steps.changed-schema-files.outputs.modified_files }} | tr -s " " ";"
+          echo $BONGO
+          echo "End of modified files in one line"
           
-        #${{ steps.changed-schema-files.outputs.modified_files }} | tr -s " " ";"
-
       - name: Test
         run: |
           echo $MODIFIED_FILES
@@ -53,4 +52,3 @@ jobs:
         with:
           schema-files: $MODIFIED_FILES
           dry-run: "false"
-          

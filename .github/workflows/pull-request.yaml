@@ -35,7 +35,7 @@ jobs:
         shell: bash
         run: |
           echo "Modified files in one line: "
-          echo "BONGO=$(${{ steps.changed-schema-files.outputs.modified_files }} | tr -s " " ";")"
+          echo "BONGO=$(${{ steps.changed-schema-files.outputs.modified_files }} | tr -s ' ' ';')"
           echo $BONGO
           echo "End of modified files in one line"
           

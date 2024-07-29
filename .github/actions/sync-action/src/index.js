@@ -48,7 +48,7 @@ async function action() {
   core.warning('This is a warning message');
   core.error('This is an error message');
 
-  const payload = inputFiles.map(async (file) => ({
+  const payload = await inputFiles.map(async (file) => ({
     kind: file.split('.json')[0],
     filename: file,
     schemaValue: JSON.parse(await fs.readFile(file, 'utf8')),

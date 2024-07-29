@@ -62,7 +62,7 @@ async function action() {
   //   schemaValue: JSON.parse(fs.readFileSync(file, 'utf8')),
   // });
   // core.info('requestPayload:', payload);
-  console.log('requestPayload:', asd);
+  console.log('requestPayload:', payload);
 
   //TODO: get results for all schema files
   // // eslint-disable-next-line no-await-in-loop

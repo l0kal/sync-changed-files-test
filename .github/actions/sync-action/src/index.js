@@ -80,10 +80,10 @@ async function action() {
   //   //   core.error('Sync process had some errors (see details above).');
   //   // }
   //   core.endGroup();
-}
-if (failed) {
-  throw new Error('Sync process had some errors (see details above).');
-}
+  // }
+  // if (failed) {
+  //   throw new Error('Sync process had some errors (see details above).');
+  // }
 }
 
 if (require.main === module) {

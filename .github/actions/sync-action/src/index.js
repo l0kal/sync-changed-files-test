@@ -29,17 +29,17 @@ function printReport(report) {
 
     if (messages) {
       for (const message of messages) {
-        console.log(`[Message]: ${message}`);
+        core.info(`[Message]: ${message}`);
       }
     }
     if (warnings) {
       for (const warning of warnings) {
-        console.warn(`[Warning]: ${warning}`);
+        core.warning(`[Warning]: ${warning}`);
       }
     }
     if (errors) {
       for (const error of errors) {
-        console.error(`[Error]: ${error}`);
+        core.error(`[Error]: ${error}`);
       }
     }
 
@@ -65,7 +65,7 @@ async function action() {
   // // eslint-disable-next-line no-await-in-loop
   // const { data } = await cccApi.post(
   //   `/api/v1/internal/schema:sync?dryRun=${dryRun}`,
-  //   camelcaseKeys(def, { deep: true }),
+  //   payload,
   // );
 
   const notExistingKind = 'che.not-existing.v1';
@@ -109,29 +109,6 @@ async function action() {
   }
 
   core.info('Sync process completed successfully.');
-
-
-
-  // const failed = false;
-  // for (const schemaFile of results) {
-  //   core.startGroup(`Sync schema from ${schemaFile}`);
-  //   // // eslint-disable-next-line no-await-in-loop
-  //   // const { data } = await cccApi.post(
-  //   //   `/api/v1/internal/schema:sync?dryRun=${dryRun}`,
-  //   //   camelcaseKeys(def, { deep: true }),
-  //   // );
-
-  //   // printSyncResult(data.report);
-
-  //   // if (!data.success) {
-  //   //   failed = true;
-  //   //   core.error('Sync process had some errors (see details above).');
-  //   // }
-  //   core.endGroup();
-  // }
-  // if (failed) {
-  //   throw new Error('Sync process had some errors (see details above).');
-  // }
 }
 
 if (require.main === module) {

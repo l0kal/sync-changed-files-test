@@ -29,17 +29,17 @@ function printReport(report) {
 
     if (messages) {
       for (const message of messages) {
-        core.info(`[Message]: ${message}`);
+        core.info(`[${kind}]: ${message}`);
       }
     }
     if (warnings) {
       for (const warning of warnings) {
-        core.warning(`[Warning]: ${warning}`);
+        core.warning(`[${kind}]: ${warning}`);
       }
     }
     if (errors) {
       for (const error of errors) {
-        core.error(`[Error]: ${error}`);
+        core.error(`[${kind}]: ${error}`);
       }
     }
 

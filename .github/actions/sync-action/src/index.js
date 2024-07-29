@@ -49,12 +49,7 @@ function printReport(report) {
 
 async function action() {
   const dryRun = core.getBooleanInput('dry-run') === true;
-  core.info('dryRun:', dryRun);
-  console.log('dryRun:', dryRun);
-
   const inputFiles = core.getInput('schema-files').split(';');
-  core.info('inputFiles:', inputFiles);
-  console.log('inputFiles:', inputFiles);
   // const secrets = await loadSecrets(serviceAccountKey);
   // const cccApi = createApi({ name: 'customer-config', auth: secrets, url: 'https://ccc-api.retailsvc.com' });
 
@@ -65,8 +60,6 @@ async function action() {
       schemaValue: JSON.parse(fs.readFileSync(file, 'utf8')),
     }
   });
-
-  console.log('requestPayload:', payload);
 
   //TODO: get results for all schema files
   // // eslint-disable-next-line no-await-in-loop

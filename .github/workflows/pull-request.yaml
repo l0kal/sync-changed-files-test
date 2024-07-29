@@ -37,6 +37,11 @@ jobs:
           echo "MODIFIED_FILES=$(echo ${{ steps.changed-files.outputs.modified_files }} | tr -s ' ' ';')" >> $GITHUB_ENV
           echo "ADDED_FILES=$(echo ${{ steps.changed-files.outputs.added_files }} | tr -s ' ' ';')" >> $GITHUB_ENV
 
+      - name: Test
+        run: |
+          echo $MODIFIED_FILES
+          echo $ADDED_FILES
+
       - name: Prepare action
         run: npm ci --prefix .github/actions/sync-action
 

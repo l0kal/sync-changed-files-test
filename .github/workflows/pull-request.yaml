@@ -48,5 +48,5 @@ jobs:
       - name: Validate and sync schema
         uses: ./.github/actions/sync-action
         with:
-          schema-files: $MODIFIED_FILES
+          schema-files: ${{ env.MODIFIED_FILES }};${{ env.ADDED_FILES }}
           dry-run: "false"

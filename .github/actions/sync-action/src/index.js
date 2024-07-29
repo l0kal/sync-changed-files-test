@@ -45,7 +45,7 @@ async function action() {
     // const secrets = await loadSecrets(serviceAccountKey);
     // const cccApi = createApi({ name: 'customer-config', auth: secrets, url: 'https://ccc-api.retailsvc.com' });
 
-    core.warn('This is a warning message');
+    core.warning('This is a warning message');
     core.error('This is an error message');
 
     // const payload = schemaFiles.map(async (file) => ({ kind: file.split('.json')[0], filename: file, schemaValue: JSON.parse(await fs.readFile(file, 'utf8')) }));

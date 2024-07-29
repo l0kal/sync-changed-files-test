@@ -34,6 +34,7 @@ jobs:
       - name: Set modified files in one line
         run: |
           echo "Modified files in one line: "
+          echo "BONGO: " ${{ steps.changed-schema-files.outputs.modified_files }} | tr -s " " ";"
           echo "MODIFIED_FILES=$(${{ steps.changed-schema-files.outputs.modified_files }} | tr -s " " ";")" >> $GITHUB_ENV 
           
         #${{ steps.changed-schema-files.outputs.modified_files }} | tr -s " " ";"

@@ -25,9 +25,11 @@ jobs:
           echo "ADDED_FILES=$(echo ${{ steps.changed-files.outputs.added_files }} | tr -s ' ' ';')" >> $GITHUB_ENV
 
       - name: Prepare action
+        if: steps.changed-files.outputs.any_changed == 'true'
         run: npm ci --prefix .github/actions/sync-action
 
       - name: Validate and sync schema
+        if: steps.changed-files.outputs.any_changed == 'true'
         uses: ./.github/actions/sync-action
         with:
           schema-files: ${{ env.MODIFIED_FILES }};${{ env.ADDED_FILES }}

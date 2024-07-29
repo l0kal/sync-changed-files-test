@@ -17,24 +17,26 @@ jobs:
             files: |
                 customer-config/**/**.json
 
-      - name: List all changed files markdown files
-        if: steps.changed-schema-files.outputs.any_changed == 'true'
-        env:
-            ALL_CHANGED_FILES: ${{ steps.changed-schema-files.outputs.all_changed_files }}
-            MODIFIED_FILES: ${{ steps.changed-schema-files.outputs.modified_files }}
-            NEW_FILES: ${{ steps.changed-schema-files.outputs.added_files }}
-        run: |
-            for file in ${ALL_CHANGED_FILES}; do
-              echo "$file was changed"
-            done
-            echo "Modified files: $MODIFIED_FILES"
-            echo "New files: $NEW_FILES"
-            echo ${MODIFIED_FILES} | paste -s -d':'
+      # - name: List all changed files markdown files
+      #   if: steps.changed-schema-files.outputs.any_changed == 'true'
+      #   env:
+      #       ALL_CHANGED_FILES: ${{ steps.changed-schema-files.outputs.all_changed_files }}
+      #       MODIFIED_FILES: ${{ steps.changed-schema-files.outputs.modified_files }}
+      #       NEW_FILES: ${{ steps.changed-schema-files.outputs.added_files }}
+      #   run: |
+      #       for file in ${ALL_CHANGED_FILES}; do
+      #         echo "$file was changed"
+      #       done
+      #       echo "Modified files: $MODIFIED_FILES"
+      #       echo "New files: $NEW_FILES"
+      #       echo ${MODIFIED_FILES} | paste -s -d':'
         
       - name: Use values
         run: |
           echo "Modified files in one line: "
-          echo ${{ steps.changed-schema-files.outputs.modified_files }} | tr -s " " ";"
+          echo 'MODIFIED_FILES=$(${{ steps.changed-schema-files.outputs.modified_files }} | tr -s " " ";")' >> $GITHUB_ENV 
+          
+        #${{ steps.changed-schema-files.outputs.modified_files }} | tr -s " " ";"
 
       - name: Prepare action
         run: npm ci --prefix .github/actions/sync-action
@@ -42,6 +44,6 @@ jobs:
       - name: Validate and sync schema
         uses: ./.github/actions/sync-action
         with:
-          schema-files: ${{ steps.changed-schema-files.outputs.modified_files }}
+          schema-files: ${{ env.MODIFIED_FILES }}
           dry-run: "false"
           

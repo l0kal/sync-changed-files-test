@@ -31,12 +31,16 @@ jobs:
       #       echo "New files: $NEW_FILES"
       #       echo ${MODIFIED_FILES} | paste -s -d':'
         
-      - name: Use values
+      - name: Set modified files in one line
         run: |
           echo "Modified files in one line: "
-          echo 'MODIFIED_FILES=$(${{ steps.changed-schema-files.outputs.modified_files }} | tr -s " " ";")' >> $GITHUB_ENV 
+          echo "MODIFIED_FILES=$(${{ steps.changed-schema-files.outputs.modified_files }} | tr -s " " ";")" >> $GITHUB_ENV 
           
         #${{ steps.changed-schema-files.outputs.modified_files }} | tr -s " " ";"
+
+      - name: Test
+        run: |
+          echo $MODIFIED_FILES
 
       - name: Prepare action
         run: npm ci --prefix .github/actions/sync-action
@@ -44,6 +48,6 @@ jobs:
       - name: Validate and sync schema
         uses: ./.github/actions/sync-action
         with:
-          schema-files: ${{ env.MODIFIED_FILES }}
+          schema-files: $MODIFIED_FILES
           dry-run: "false"
           

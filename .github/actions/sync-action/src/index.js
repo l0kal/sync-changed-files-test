@@ -48,11 +48,11 @@ async function action() {
   core.warning('This is a warning message');
   core.error('This is an error message');
 
-  const payload = inputFiles.map((file) => ({
+  const payload = inputFiles.map((file) => return {
     kind: file.split('.json')[0],
     filename: file,
     schemaValue: JSON.parse(fs.readFileSync(file, 'utf8')),
-  }));
+  });
   // core.info('requestPayload:', payload);
   console.log('requestPayload:', payload);
 

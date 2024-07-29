@@ -48,13 +48,21 @@ async function action() {
   core.warning('This is a warning message');
   core.error('This is an error message');
 
-  const payload = inputFiles.map((file) => return {
-    kind: file.split('.json')[0],
-    filename: file,
-    schemaValue: JSON.parse(fs.readFileSync(file, 'utf8')),
+  const asd = inputFiles.array.forEach((file) => {
+    return {
+      kind: file.split('.json')[0],
+      filename: file,
+      schemaValue: JSON.parse(fs.readFileSync(file, 'utf8'))
+    }
   });
+
+  // const payload = inputFiles.map((file) => return {
+  //   kind: file.split('.json')[0],
+  //   filename: file,
+  //   schemaValue: JSON.parse(fs.readFileSync(file, 'utf8')),
+  // });
   // core.info('requestPayload:', payload);
-  console.log('requestPayload:', payload);
+  console.log('requestPayload:', asd);
 
   //TODO: get results for all schema files
   // // eslint-disable-next-line no-await-in-loop

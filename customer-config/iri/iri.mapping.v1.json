@@ -54,7 +54,7 @@
                 },
                 "mode": {
                     "description": "Mode",
-                    "type": "string"
+                    "type": "number"
                 }
             }
         }

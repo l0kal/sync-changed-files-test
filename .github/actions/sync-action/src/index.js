@@ -51,7 +51,7 @@ async function action() {
   const payload = inputFiles.map((file) => ({
     kind: file.split('.json')[0],
     filename: file,
-    schemaValue: JSON.parse(await fs.readFileSync(file, 'utf8')),
+    schemaValue: JSON.parse(fs.readFileSync(file, 'utf8')),
   }));
   // core.info('requestPayload:', payload);
   console.log('requestPayload:', payload);
